@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_image_search_02/data/model/search_list_view_model.dart';
 import 'package:provider/provider.dart';
 
+import '../photo_detail/photo_detail_screen.dart';
 import 'component/image_card_widget.dart';
 
 class SearchListScreen extends StatefulWidget {
@@ -66,11 +67,23 @@ class _SearchListScreenState extends State<SearchListScreen> {
                     crossAxisCount: 2,
                     children: state.photos
                         .map(
-                          (e) => Hero(
-                              tag: e.id,
-                              child: ImageCardWidget(
-                                photo: e,
-                              )),
+                          (e) => GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => PhotoDetailScreen(
+                                    photo: e,
+                                  ),
+                                ),
+                              );
+                            },
+                            child: Hero(
+                                tag: e.id,
+                                child: ImageCardWidget(
+                                  photo: e,
+                                )),
+                          ),
                         )
                         .toList(),
                   ),

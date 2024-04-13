@@ -30,11 +30,11 @@
 	    "prefix": "navpush",
 	    "description": "Navigator push",
     "body": [
-    
-        "MaterialPageRoute(",
+      "Navigator.push(",
+        "context, MaterialPageRoute(",
         "builder: (context) => $0(),",
-        ")"
-
+        "),",
+      ");"
 	]
     },
     "navigation pop": {
