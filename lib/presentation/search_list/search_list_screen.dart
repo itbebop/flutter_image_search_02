@@ -3,6 +3,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_image_search_02/data/model/search_list_view_model.dart';
 import 'package:provider/provider.dart';
 
+import 'component/image_card_widget.dart';
+
 class SearchListScreen extends StatefulWidget {
   const SearchListScreen({super.key});
 
@@ -64,13 +66,11 @@ class _SearchListScreenState extends State<SearchListScreen> {
                     crossAxisCount: 2,
                     children: state.photos
                         .map(
-                          (e) => ClipRRect(
-                            borderRadius: BorderRadius.circular(20),
-                            child: Image.network(
-                              e.url,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
+                          (e) => Hero(
+                              tag: e.id,
+                              child: ImageCardWidget(
+                                photo: e,
+                              )),
                         )
                         .toList(),
                   ),
