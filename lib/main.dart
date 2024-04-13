@@ -21,9 +21,7 @@ class MyApp extends StatelessWidget {
         create: (_) {
           return SearchListViewModel(photoRepositoryImpl: PhotoRepositoryImpl(photoDataSource: PhotoDataSource()));
         },
-        child: SearchListScreen(
-          viewModel: SearchListViewModel(photoRepositoryImpl: PhotoRepositoryImpl(photoDataSource: PhotoDataSource())),
-        ),
+        child: const SearchListScreen(),
       ),
     );
   }

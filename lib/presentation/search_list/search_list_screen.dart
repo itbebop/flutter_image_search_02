@@ -4,8 +4,7 @@ import 'package:flutter_image_search_02/data/model/search_list_view_model.dart';
 import 'package:provider/provider.dart';
 
 class SearchListScreen extends StatefulWidget {
-  final SearchListViewModel viewModel;
-  const SearchListScreen({super.key, required this.viewModel});
+  const SearchListScreen({super.key});
 
   @override
   State<SearchListScreen> createState() => _SearchListScreenState();
@@ -33,6 +32,7 @@ class _SearchListScreenState extends State<SearchListScreen> {
   @override
   Widget build(BuildContext context) {
     final viewModel = context.watch<SearchListViewModel>();
+    final state = viewModel.state;
 
     return Scaffold(
       appBar: AppBar(
@@ -55,21 +55,25 @@ class _SearchListScreenState extends State<SearchListScreen> {
             ),
           ),
           Expanded(
-            child: GridView.count(
-              padding: const EdgeInsets.all(5),
-              crossAxisCount: 2,
-              children: viewModel.photo
-                  .map(
-                    (e) => ClipRRect(
-                      borderRadius: BorderRadius.circular(20),
-                      child: Image.network(
-                        e.url,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  )
-                  .toList(),
-            ),
+            child: state.isLoading
+                ? const Center(child: CircularProgressIndicator())
+                : GridView.count(
+                    padding: const EdgeInsets.all(10),
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 10,
+                    crossAxisCount: 2,
+                    children: state.photos
+                        .map(
+                          (e) => ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Image.network(
+                              e.url,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        )
+                        .toList(),
+                  ),
           )
         ],
       ),
