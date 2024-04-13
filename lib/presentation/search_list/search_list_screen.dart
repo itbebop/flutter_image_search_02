@@ -43,8 +43,12 @@ class _SearchListScreenState extends State<SearchListScreen> {
       ),
       body: Column(
         children: [
-          TextField(
+          TextFormField(
             controller: _queryTextEditingController,
+            textInputAction: TextInputAction.search,
+            onFieldSubmitted: (String value) {
+              viewModel.onSearch(value);
+            },
             decoration: InputDecoration(
               border: const OutlineInputBorder(),
               hintText: '검색어',
