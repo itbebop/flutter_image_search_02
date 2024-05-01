@@ -12,7 +12,6 @@ class SearchListViewModel with ChangeNotifier {
   SearchListState get state => _state;
 
   void onFetch() async {
-    //_photo = await _photoRepositoryImpl.getPhotos('');
     _state = state.copyWith(isLoading: true);
     notifyListeners();
 
@@ -24,7 +23,6 @@ class SearchListViewModel with ChangeNotifier {
   }
 
   void onSearch(String query) async {
-    //_photo = await _photoRepositoryImpl.getPhotos(query);
     _state = state.copyWith(isLoading: true);
     notifyListeners();
 
