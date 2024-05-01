@@ -51,7 +51,7 @@ class _SearchListScreenState extends State<SearchListScreen> {
             },
             decoration: InputDecoration(
               border: const OutlineInputBorder(),
-              hintText: '검색어',
+              hintText: '검색어를 입력하세요',
               suffixIcon: IconButton(
                 icon: const Icon(Icons.search),
                 onPressed: () {
